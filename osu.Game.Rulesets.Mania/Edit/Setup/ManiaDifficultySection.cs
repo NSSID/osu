@@ -48,13 +48,14 @@ namespace osu.Game.Rulesets.Mania.Edit.Setup
                         MaxValue = 10,
                         Precision = 1,
                     },
+                    TransferValueOnCommit = true,
                     TabbableContentContainer = this,
                 },
                 specialStyle = new FormCheckBox
                 {
                     Caption = "Use special (N+1) style",
                     HintText = "Changes one column to act as a classic \"scratch\" or \"special\" column, which can be moved around by the user's skin (to the left/right/centre). Generally used in 6K (5+1) or 8K (7+1) configurations.",
-                    Current = { Value = Beatmap.BeatmapInfo.SpecialStyle }
+                    Current = { Value = Beatmap.SpecialStyle }
                 },
                 healthDrainSlider = new FormSliderBar<float>
                 {
@@ -67,6 +68,7 @@ namespace osu.Game.Rulesets.Mania.Edit.Setup
                         MaxValue = 10,
                         Precision = 0.1f,
                     },
+                    TransferValueOnCommit = true,
                     TabbableContentContainer = this,
                 },
                 overallDifficultySlider = new FormSliderBar<float>
@@ -80,6 +82,7 @@ namespace osu.Game.Rulesets.Mania.Edit.Setup
                         MaxValue = 10,
                         Precision = 0.1f,
                     },
+                    TransferValueOnCommit = true,
                     TabbableContentContainer = this,
                 },
                 baseVelocitySlider = new FormSliderBar<double>
@@ -93,6 +96,7 @@ namespace osu.Game.Rulesets.Mania.Edit.Setup
                         MaxValue = 3.6,
                         Precision = 0.01f,
                     },
+                    TransferValueOnCommit = true,
                     TabbableContentContainer = this,
                 },
                 tickRateSlider = new FormSliderBar<double>
@@ -106,6 +110,7 @@ namespace osu.Game.Rulesets.Mania.Edit.Setup
                         MaxValue = 4,
                         Precision = 1,
                     },
+                    TransferValueOnCommit = true,
                     TabbableContentContainer = this,
                 },
             };
@@ -152,7 +157,7 @@ namespace osu.Game.Rulesets.Mania.Edit.Setup
             // for now, update these on commit rather than making BeatmapMetadata bindables.
             // after switching database engines we can reconsider if switching to bindables is a good direction.
             Beatmap.Difficulty.CircleSize = keyCountSlider.Current.Value;
-            Beatmap.BeatmapInfo.SpecialStyle = specialStyle.Current.Value;
+            Beatmap.SpecialStyle = specialStyle.Current.Value;
             Beatmap.Difficulty.DrainRate = healthDrainSlider.Current.Value;
             Beatmap.Difficulty.OverallDifficulty = overallDifficultySlider.Current.Value;
             Beatmap.Difficulty.SliderMultiplier = baseVelocitySlider.Current.Value;

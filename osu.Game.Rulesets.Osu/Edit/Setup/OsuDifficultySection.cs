@@ -42,6 +42,7 @@ namespace osu.Game.Rulesets.Osu.Edit.Setup
                         MaxValue = 10,
                         Precision = 0.1f,
                     },
+                    TransferValueOnCommit = true,
                     TabbableContentContainer = this,
                 },
                 healthDrainSlider = new FormSliderBar<float>
@@ -55,6 +56,7 @@ namespace osu.Game.Rulesets.Osu.Edit.Setup
                         MaxValue = 10,
                         Precision = 0.1f,
                     },
+                    TransferValueOnCommit = true,
                     TabbableContentContainer = this,
                 },
                 approachRateSlider = new FormSliderBar<float>
@@ -68,6 +70,7 @@ namespace osu.Game.Rulesets.Osu.Edit.Setup
                         MaxValue = 10,
                         Precision = 0.1f,
                     },
+                    TransferValueOnCommit = true,
                     TabbableContentContainer = this,
                 },
                 overallDifficultySlider = new FormSliderBar<float>
@@ -81,6 +84,7 @@ namespace osu.Game.Rulesets.Osu.Edit.Setup
                         MaxValue = 10,
                         Precision = 0.1f,
                     },
+                    TransferValueOnCommit = true,
                     TabbableContentContainer = this,
                 },
                 baseVelocitySlider = new FormSliderBar<double>
@@ -94,6 +98,7 @@ namespace osu.Game.Rulesets.Osu.Edit.Setup
                         MaxValue = 3.6,
                         Precision = 0.01f,
                     },
+                    TransferValueOnCommit = true,
                     TabbableContentContainer = this,
                 },
                 tickRateSlider = new FormSliderBar<double>
@@ -107,19 +112,21 @@ namespace osu.Game.Rulesets.Osu.Edit.Setup
                         MaxValue = 4,
                         Precision = 1,
                     },
+                    TransferValueOnCommit = true,
                     TabbableContentContainer = this,
                 },
                 stackLeniency = new FormSliderBar<float>
                 {
                     Caption = "Stack Leniency",
                     HintText = "In play mode, osu! automatically stacks notes which occur at the same location. Increasing this value means it is more likely to snap notes of further time-distance.",
-                    Current = new BindableFloat(Beatmap.BeatmapInfo.StackLeniency)
+                    Current = new BindableFloat(Beatmap.StackLeniency)
                     {
                         Default = 0.7f,
                         MinValue = 0,
                         MaxValue = 1,
                         Precision = 0.1f
                     },
+                    TransferValueOnCommit = true,
                     TabbableContentContainer = this,
                 },
             };
@@ -141,7 +148,7 @@ namespace osu.Game.Rulesets.Osu.Edit.Setup
             Beatmap.Difficulty.OverallDifficulty = overallDifficultySlider.Current.Value;
             Beatmap.Difficulty.SliderMultiplier = baseVelocitySlider.Current.Value;
             Beatmap.Difficulty.SliderTickRate = tickRateSlider.Current.Value;
-            Beatmap.BeatmapInfo.StackLeniency = stackLeniency.Current.Value;
+            Beatmap.StackLeniency = stackLeniency.Current.Value;
 
             Beatmap.UpdateAllHitObjects();
             Beatmap.SaveState();
